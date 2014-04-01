@@ -92,9 +92,20 @@ class BooTwitter
 			}
 			else{
 				curl_setopt($this->_conn, CURLOPT_POST, 0);
-			}
-			curl_setopt($this->_conn, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($this->_conn, CURLOPT_COOKIEJAR, $this->_cookie);
+            }
+
+             //Tor address & port
+            $tor = '127.0.0.1:9050';
+
+            //Set proxy type
+            curl_setopt($this->_conn, CURLOPT_PROXY, $tor);
+
+
+            curl_setopt($this->_conn, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+
+            curl_setopt($this->_conn, CURLOPT_RETURNTRANSFER, true);
+                
+                curl_setopt($this->_conn, CURLOPT_COOKIEJAR, $this->_cookie);
 			curl_setopt($this->_conn, CURLOPT_HEADER, 0);
 			curl_setopt($this->_conn, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($this->_conn, CURLOPT_RETURNTRANSFER, 1);
